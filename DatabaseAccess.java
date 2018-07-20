@@ -15,17 +15,18 @@ public class DatabaseAccess extends HttpServlet{
 
         response.setContentType("text/html;charset=Windows-1251");
         PrintWriter out = response.getWriter();
-        String title = "Database Table";
+        String title = "Книги";
 
         String docType =
                 "<!doctype html>\n";
 
         out.println(docType +
-                "<html lang='ru'>\n" +
-                "<head><meta charset='utf-8'><title>" + title + "</title></head>\n" +
-                "<body bgcolor = \"#ffff99\">\n" +
+                "<html lang = \"ru\">\n" +
+                "<head><meta charset=\"utf-8\"><title>" + title + "</title>" +
+                "<script type=\"text/javascript\" src=\"js/sorting.js\"></script>" +
+                "<link rel=\"stylesheet\" type=\"text/css\" href=\"css/style.css\"></head>\n" +
+                "<body bgcolor = \"#c8ffc8\">\n" +
                 "<h1 align = \"center\">" + title + "</h1>\n");
-
         try {
             // Register JDBC driver
 
@@ -41,12 +42,12 @@ public class DatabaseAccess extends HttpServlet{
             sql = "SELECT * FROM ges_books_test";
 
             ResultSet rs = stmt.executeQuery(sql);
-            out.println("<table border='1' align='center'><caption>Книги</caption><tr>" +
-                    "<th>ISBN</th>" +
-                    "<th>Автор</th>" +
-                    "<th>Название книги</th>" +
-                    "<th>Кем взята</th>" +
-                    "</tr>");
+            out.println("<table class=\"sort\" align=\"center\"><thead><tr>" +
+                    "<td>ISBN</td>" +
+                    "<td>Автор</td>" +
+                    "<td>Название книги</td>" +
+                    "<td>Кем взята</td>" +
+                    "</tr></thead><tbody>");
             // Extract data from result set
             while (rs.next()) {
                 //Retrieve by column name
@@ -65,7 +66,7 @@ public class DatabaseAccess extends HttpServlet{
                 else
                     out.print("<td>" + user_take + "</td></tr>");
             }
-            out.println("</table></body></html>");
+            out.println("</tbody></table></body></html>");
 
             // Clean-up environment
             rs.close();
