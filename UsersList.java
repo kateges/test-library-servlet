@@ -5,7 +5,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
 
-public class DatabaseAccess extends HttpServlet{
+public class UsersList extends HttpServlet{
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -23,10 +23,10 @@ public class DatabaseAccess extends HttpServlet{
         out.println(docType +
                 "<html lang = \"ru\">\n" +
                 "<head><meta charset=\"utf-8\"><title>" + title + "</title>" +
-                "<script type=\"text/javascript\" src=\"js/sorting.js\"></script>" +
+              
                 "<link rel=\"stylesheet\" type=\"text/css\" href=\"css/style.css\"></head>\n" +
                 "<body bgcolor = \"#c8ffc8\">\n" +
-		"<h1 align = \"center\"><table class=\"firstline\" align=\"center\"><tr><td>Книги</td><td><a href=\"UsersList\">Пользователи</a></td></tr></table></h1>\n" +
+                "<h1 align = \"center\"><table class=\"firstline\" align=\"center\"><tr><td><a href=\"DatabaseAccess\">Книги</a></td><td>Пользователи</td></tr></table></h1>\n" +
                 "<h3 align = \"center\">Текущий пользователь: "+usr+"</h3>\n");
         try {
             // Register JDBC driver
@@ -40,32 +40,25 @@ public class DatabaseAccess extends HttpServlet{
             Statement stmt = conn.createStatement();
 
             String sql;
-            sql = "SELECT * FROM ges_books_test";
+            sql = "SELECT * FROM ges_us_test order by user_log";
 
             ResultSet rs = stmt.executeQuery(sql);
-            out.println("<table class=\"sort\" align=\"center\"><thead><tr>" +
-                    "<td>ISBN</td>" +
-                    "<td>Автор</td>" +
-                    "<td>Название книги</td>" +
-                    "<td>Кем взята</td>" +
+            out.println("<table class=\"sort\" align=\"center\"><thead><tr>" +     
+                    "<td>Логин</td>" +
+                    "<td>Удалить</td>" +
                     "</tr></thead><tbody>");
-            // Extract data from result set
+
             while (rs.next()) {
-                //Retrieve by column name
-                String ISBN  = rs.getString("ISBN");
-                String author = rs.getString("author");
-                String name_book = rs.getString("name_book");
-                int user_take = rs.getInt("user_take");
+               
+                String user_log = rs.getString("user_log");
+
 
                 //Display values
 
-                out.print("<tr><td>" + ISBN + "</td>");
-                out.print("<td>" + author + "</td>");
-                out.print("<td>" + name_book + "</td>");
-                if (user_take == 0)
-                    out.print("<td>" + "<button>Взять</button>" + "</td></tr>");
-                else
-                    out.print("<td>" + user_take + "</td></tr>");
+                out.print("<td>" + user_log + "</td>");
+
+                out.print("<td>" + "<button>Удалить</button>" + "</td></tr>");
+                
             }
             out.println("</tbody></table></body></html>");
 

@@ -30,3 +30,12 @@ vertical-align:middle
 background-color:#008000;
 color:#FFFFFF
 }
+
+/* таблица */
+.firstline{
+border-spacing:1em;
+margin-bottom:1em;
+margin-top:1em;
+margin-left:10em;
+margin-right:10em;
+}
