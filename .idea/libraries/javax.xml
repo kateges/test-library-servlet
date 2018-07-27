@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="javax">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/main/resources/lib/servlet-api.jar!/javax" />
+      <root url="file://$PROJECT_DIR$/src/main/resources/lib" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <excluded>
+      <root url="jar://$PROJECT_DIR$/src/main/resources/lib/servlet-api.jar!/" />
+    </excluded>
+    <jarDirectory url="file://$PROJECT_DIR$/src/main/resources/lib" recursive="false" />
+  </library>
+</component>
