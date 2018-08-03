@@ -147,6 +147,8 @@ function init(e) {
     }
 }
 
+
+
 // запускаем ф-цию init() при возникновении события load
 var root = window.addEventListener || window.attachEvent ? window : document.addEventListener ? document : null;
 if (root){

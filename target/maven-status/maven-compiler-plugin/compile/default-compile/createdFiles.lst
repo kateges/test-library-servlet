@@ -1,4 +1,5 @@
 AddNewBook.class
 DatabaseAccess.class
-AddNewBook$RequestCustomer.class
+DelBook.class
 UsersList.class
+EditBook.class

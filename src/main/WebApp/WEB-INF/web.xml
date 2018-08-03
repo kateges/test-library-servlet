@@ -11,6 +11,14 @@
 	<servlet-name>AddNewBook</servlet-name>
 	<servlet-class>AddNewBook</servlet-class>
 </servlet>
+	<servlet>
+		<servlet-name>EditBook</servlet-name>
+		<servlet-class>EditBook</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>DelBook</servlet-name>
+		<servlet-class>DelBook</servlet-class>
+	</servlet>
 
 <servlet-mapping>
    <servlet-name>DatabaseAccess</servlet-name>
@@ -28,6 +36,18 @@
 	<http-method>POST</http-method>
 	<http-method>GET</http-method>
 </servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EditBook</servlet-name>
+		<url-pattern>/EditBook</url-pattern>
+		<http-method>POST</http-method>
+		<http-method>GET</http-method>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DelBook</servlet-name>
+		<url-pattern>/DelBook</url-pattern>
+		<http-method>POST</http-method>
+		<http-method>GET</http-method>
+	</servlet-mapping>
 
 	<security-constraint>
 		<web-resource-collection>

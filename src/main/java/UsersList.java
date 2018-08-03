@@ -1,4 +1,4 @@
-﻿// Loading required libraries
+// Loading required libraries
 import java.io.*;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +14,7 @@ public class UsersList extends HttpServlet {
         // Set response content type
 
         String usr = request.getRemoteUser();
-        response.setContentType("text/html;charset=Windows-1251");
+        response.setContentType("text/html;charset=utf-8");
         PrintWriter out = response.getWriter();
         String title = "Книги";
 
@@ -27,17 +27,12 @@ public class UsersList extends HttpServlet {
                 "<script type=\"text/javascript\" src=\"js/del.js\"></script>" +
                 "<link rel=\"stylesheet\" type=\"text/css\" href=\"css/style.css\"></head>\n" +
                 "<body bgcolor = \"#c8ffc8\">\n" +
-                "<h1 align = \"center\"><table class=\"firstline\" align=\"center\"><tr><td><a href=\"start\">Книги</a></td><td>Пользователи</td></tr></table></h1>\n" +
+                "<table class=\"firstline\" align=\"center\"><tr><td><a href=\"start\" class=\"toptext\">Книги</a></td><td class=\"toptext\">Пользователи</td></tr></table></h1>\n" +
                 "<h3 align = \"center\">Текущий пользователь: "+usr+"</h3>\n");
         try {
-            // Register JDBC driver
+            Class.forName("org.h2.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:h2:~/test", "sa", "");
 
-            Class.forName("oracle.jdbc.OracleDriver");
-
-            // Open a connection
-            Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:oradevdb01", "test", "test");
-
-            // Execute SQL query
             Statement stmt = conn.createStatement();
 
             String sql;

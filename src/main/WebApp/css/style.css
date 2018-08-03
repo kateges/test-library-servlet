@@ -1,4 +1,14 @@
-/* ������� */
+@charset "UTF-8";
+
+/* таблица */
+.firstline{
+border-spacing:1em;
+margin-bottom:1em;
+margin-top:1em;
+margin-left:10em;
+margin-right:10em;
+}
+
 .sort{
 border-spacing:0.1em;
 margin-bottom:1em;
@@ -38,25 +48,12 @@ background-color:#008000;
 color:#FFFFFF
 }
 
-/* таблица */
-.firstline{
-border-spacing:1em;
-margin-bottom:1em;
-margin-top:1em;
-margin-left:10em;
-margin-right:10em;
-}
-
-body {background:
-	width: 730px;
-	margin: 0 auto;
-}
-h1 {
+.toptext {
 	font: 24px/28px Arial, Tahoma, sans-serif;
 	margin: 50px 0;text-align: center;
 }
 /* устанавливаем слой затемнения фона,
-  ** опрделяем позиции, цвет и интенсивность затемнения  */
+*/
 .black-overlay{
 	display: none;
 	position: absolute;
@@ -81,37 +78,27 @@ h1 {
 	z-index:1002;
 	margin: 1% auto;
 }
-/* оформляем заголовок формы */
-.title {
-	font-family: "Trebuchet MS",Tahoma,Arial,sans-serif;
-	font-size:22px;
-	font-weight: normal;
-	font-weight: 200;
-	text-align:center;
-	top: 20px;
-	left: 40px;
-	color: #545151;
-	height: 40px;
-	width: 200px;
-	margin: 5px 0;
-	text-shadow: 1px 1px #FFF;/* тень текста */
-    align: center;
-}
+
 /* стили для полей ввода */
-input[type=text] {
+.text-disabled {
 	font-family: "Trebuchet MS",Tahoma,Arial,sans-serif;
 	font-size: 13px;
-	background-color:rgb(255,255,255);
-	color: #787474;
+	background-color:rgb(208,208,208);
+	color: #888888;
 	padding-left: 10px;
 	width:208px;
 	height:33px;
-	border-color:rgb(182,182,182);
-	border-width:1px;
-	border-style:solid;
-
 }
 
+.text-ok {
+	font-family: "Trebuchet MS",Tahoma,Arial,sans-serif;
+	font-size: 13px;
+	background-color:rgb(255,255,255);
+	color: #000000;
+	padding-left: 10px;
+	width:208px;
+	height:33px;
+}
 
 /* оформляем кнопку отправки */
 .send-message {
