@@ -19,6 +19,10 @@
 		<servlet-name>DelBook</servlet-name>
 		<servlet-class>DelBook</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>TakeBook</servlet-name>
+		<servlet-class>TakeBook</servlet-class>
+	</servlet>
 
 <servlet-mapping>
    <servlet-name>DatabaseAccess</servlet-name>
@@ -45,6 +49,12 @@
 	<servlet-mapping>
 		<servlet-name>DelBook</servlet-name>
 		<url-pattern>/DelBook</url-pattern>
+		<http-method>POST</http-method>
+		<http-method>GET</http-method>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>TakeBook</servlet-name>
+		<url-pattern>/TakeBook</url-pattern>
 		<http-method>POST</http-method>
 		<http-method>GET</http-method>
 	</servlet-mapping>

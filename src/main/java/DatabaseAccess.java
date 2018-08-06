@@ -32,11 +32,26 @@ public class DatabaseAccess extends HttpServlet {
                 " if (confirm(\"Удалить книгу?\")){" +
                 "document.fordelete.isbn_del.value =isbn;"+
                 "document.fordelete.submit();"+
-                "}}</script>"+
+                "}}" +
+
+                "function take(isbn, user_log) {" +
+                " if (confirm(\"Взять себе книгу?\")){" +
+                "document.fortake.isbn_take.value =isbn;"+
+                "document.fortake.user_log.value =user_log;"+
+                "document.fortake.submit();"+
+                "}}" +
+
+                "function ireturn(isbn) {" +
+                " if (confirm(\"Вернуть книгу?\")){" +
+                "document.forreturn.isbn_return.value =isbn;"+
+                "document.forreturn.submit();"+
+                "}}" +
+
+                "</script>"+
 
                 "</head>\n" +
                 "<body bgcolor = \"#c8ffc8\">\n" +
-                
+
                 "<table class=\"firstline\" align=\"center\"><tr><td class=\"toptext\">Книги</td><td><a href=\"UsersList\" class=\"toptext\">Пользователи</a></td></tr></table>\n" +
                 "<h3 align = \"center\">Текущий пользователь: "+usr+"</h3>\n"+
 
@@ -101,7 +116,7 @@ public class DatabaseAccess extends HttpServlet {
             Statement stmt = conn.createStatement();
 
             String sql;
-            sql = "SELECT * FROM ges_books_test";
+            sql = "SELECT b.*, u.user_log FROM ges_books_test b left join ges_us_test u on (b.user_take=u.user_id)";
 
             ResultSet rs = stmt.executeQuery(sql);
             out.println("<table class=\"sort\" align=\"center\"><thead><tr>" +
@@ -117,6 +132,7 @@ public class DatabaseAccess extends HttpServlet {
                 String author = rs.getString("author");
                 String name_book = rs.getString("name_book");
                 int user_take = rs.getInt("user_take");
+                String user_log = rs.getString("user_log");
 
                 out.print("<tr>");
 
@@ -124,16 +140,25 @@ public class DatabaseAccess extends HttpServlet {
                 out.print("<td>" + author + "</td>");
                 out.print("<td>" + name_book + "</td>");
                 if (user_take == 0)
-                    out.print("<td>" + "<button>Взять</button>" + "</td>");
+                    out.print("<td> <input type=\"button\" value=\"Взять\" onclick = \"take('"+ISBN+"', '"+usr+"')\">" + "</td>");
                 else
-                    out.print("<td>" + user_take + "</td>");
+                    out.print("<td>" + user_log + "</td>");
 
                 out.print("<td> <input type=\"button\" value=\"Удалить\" onclick = \"del('"+ISBN+"')\">" + "</td></tr>");
 
             }
-            out.println("</tbody></table><form name=\"fordelete\" action=\"DelBook\" method=\"get\">\n" +
+            out.println("</tbody></table>" +
+                    "<form name=\"fordelete\" action=\"DelBook\" method=\"get\">\n" +
                     "    <input type=\"hidden\" name=\"isbn_del\" id=\"isbn_del\">\n" +
-                    "</form></body></html>");
+                    "</form>" +
+                    "<form name=\"fortake\" action=\"TakeBook\" method=\"get\">\n" +
+                    "    <input type=\"hidden\" name=\"isbn_take\" id=\"isbn_take\">\n" +
+                    "    <input type=\"hidden\" name=\"user_log\" id=\"user_log\">\n" +
+                    "</form>" +
+                    "<form name=\"forreturn\" action=\"ReturnBook\" method=\"get\">\n" +
+                    "    <input type=\"hidden\" name=\"isbn_return\" id=\"isbn_return\">\n" +
+                    "</form>" +
+                    "</body></html>");
 
             rs.close();
             stmt.close();
